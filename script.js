@@ -15,15 +15,36 @@ function validateForm(key) {
         isValid = false;
     } else if (key === 'email' && !inputs[key].includes('@')) {
         inputs[key].classList.add('error');
-        inputs[key].placeholder = 'Please enter a valid email address';
+        inputs[key].value = 'Please enter a valid email address';
         isValid = false;
     } else if (key === 'password' && inputs[key].value.length < 8) {
         inputs[key].classList.add('error');
-        inputs[key].placeholder = 'Password must have at least 8 characters';
+        inputs[key].value = 'Password must have at least 8 characters';
         isValid = false;
     }
 
     return isValid;
+}
+
+for (const key in inputs) {
+    inputs[key].addEventListener('click', function () {
+        if (inputs[key].classList.contains('error')) {
+            inputs[key].classList.remove('error');
+
+            if (key === 'firstName') {
+                inputs[key].placeholder = 'First Name';
+            }
+            if (key === 'lastName') {
+                inputs[key].placeholder = 'Last Name';
+            }
+            if (key === 'email') {
+                inputs[key].placeholder = 'Email Address';
+            }
+            if (key === 'password') {
+                inputs[key].placeholder = 'Password';
+            }
+        }
+    });
 }
 
 // Alert for form validation result
